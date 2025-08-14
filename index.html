@@ -1,0 +1,514 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pankaj | Interactive Digital Marketing Expert</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700;900&display=swap" rel="stylesheet">
+    <style>
+        /* Custom styles for the page */
+        html {
+            scroll-behavior: smooth;
+        }
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #111827; /* Deep Midnight Blue background */
+            background-image: linear-gradient(135deg, rgba(59, 130, 246, 0.1) 0%, #111827 50%, rgba(96, 165, 250, 0.1) 100%);
+            color: #e5e7eb; /* Light Gray text */
+        }
+
+        /* Frosted Acrylic Glassmorphism effect class */
+        .glass-effect {
+            background: rgba(30, 41, 59, 0.75); /* Darker, crisper background */
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.2);
+        }
+        
+        /* Text backdrop for readability */
+        .text-backdrop {
+            background: rgba(17, 24, 39, 0.5);
+            backdrop-filter: blur(8px);
+            -webkit-backdrop-filter: blur(8px);
+            padding: 2rem;
+            border-radius: 1.5rem;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        /* Floating icons animation */
+        @keyframes float {
+            0% { transform: translateY(0px) rotate(0deg) scale(1); opacity: 0; }
+            25% { opacity: 0.3; }
+            50% { transform: translateY(-40px) rotate(10deg) scale(1.1); }
+            75% { opacity: 0.3; }
+            100% { transform: translateY(0px) rotate(0deg) scale(1); opacity: 0; }
+        }
+
+        .floating-icon {
+            position: absolute;
+            display: block;
+            z-index: 0;
+            animation: float 12s ease-in-out infinite;
+            color: rgba(255, 255, 255, 0.1);
+        }
+        
+        /* Custom gradient for text */
+        .text-gradient {
+            background: linear-gradient(90deg, #60A5FA, #3B82F6);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            text-fill-color: transparent;
+        }
+        
+        .button-gradient {
+            background-image: linear-gradient(to right, #60A5FA 0%, #3B82F6 50%, #60A5FA 100%);
+            background-size: 200% auto;
+            transition: background-position 0.5s;
+            color: white;
+            box-shadow: 0 4px 15px 0 rgba(59, 130, 246, 0.4);
+        }
+
+        .button-gradient:hover {
+            background-position: right center;
+        }
+        
+        .tool-tag {
+             background-color: rgba(59, 130, 246, 0.1);
+             color: #60A5FA;
+             padding: 0.5rem 1rem;
+             border-radius: 9999px;
+             font-weight: 500;
+             font-size: 0.9rem;
+        }
+        
+        #cube-container {
+            width: 100%;
+            height: 450px;
+            cursor: grab;
+        }
+
+    </style>
+</head>
+<body class="overflow-x-hidden">
+
+    <!-- Background Floating Icons Container -->
+    <div id="floating-container" class="fixed top-0 left-0 w-full h-full -z-10 overflow-hidden"></div>
+
+    <!-- Collapsible Side Nav -->
+    <div id="side-nav-overlay" class="fixed inset-0 bg-black/50 z-40 hidden"></div>
+    <nav id="side-nav" class="glass-effect fixed top-0 left-0 h-full w-72 p-8 z-50 transform -translate-x-full transition-transform duration-300 ease-in-out">
+        <div class="flex justify-between items-center mb-12">
+            <a href="#" class="text-3xl font-bold text-white">Pankaj.</a>
+            <button id="close-nav-button" class="text-white">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" /></svg>
+            </button>
+        </div>
+        <ul class="flex flex-col space-y-6">
+            <li><a href="#home" class="nav-link text-xl text-gray-200 hover:text-blue-400 transition-colors duration-300">Home</a></li>
+            <li><a href="#services" class="nav-link text-xl text-gray-200 hover:text-blue-400 transition-colors duration-300">Services</a></li>
+            <li><a href="#case-studies" class="nav-link text-xl text-gray-200 hover:text-blue-400 transition-colors duration-300">Case Studies</a></li>
+            <li><a href="#skills" class="nav-link text-xl text-gray-200 hover:text-blue-400 transition-colors duration-300">Skills</a></li>
+            <li><a href="#contact" class="nav-link text-xl text-gray-200 hover:text-blue-400 transition-colors duration-300">Contact</a></li>
+        </ul>
+    </nav>
+    
+    <!-- Menu Button -->
+    <button id="open-nav-button" class="glass-effect fixed top-6 left-6 h-14 w-14 flex items-center justify-center rounded-full z-30">
+        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7" /></svg>
+    </button>
+
+
+    <!-- Main Content Wrapper -->
+    <div class="relative z-10">
+        <!-- Hero Section -->
+        <section id="home" class="min-h-screen flex items-center justify-center text-center px-4">
+            <div class="max-w-4xl text-backdrop">
+                 <h1 id="hero-headline" class="text-4xl md:text-6xl lg:text-7xl font-black tracking-tight text-white mb-4">
+                    Driving Growth Through <span class="text-gradient">Strategic Digital Marketing</span>
+                </h1>
+            </div>
+        </section>
+
+        <!-- Services Section with Assembling Cube -->
+        <section id="services" class="py-28 px-4">
+            <div class="container mx-auto text-center">
+                <div id="cube-container"></div>
+            </div>
+        </section>
+        
+        <!-- About Me Section -->
+        <section id="about" class="py-28 px-4">
+             <div class="container mx-auto max-w-4xl text-center glass-effect p-10 rounded-2xl">
+                 <h2 class="text-3xl md:text-4xl font-bold text-center mb-2">About Me</h2>
+                 <p class="text-gradient text-center font-semibold text-lg mb-8">Architecting Digital Growth</p>
+                 <p class="text-lg md:text-xl text-gray-300 font-medium tracking-wide leading-relaxed mb-4">
+                    I craft digital strategies that amplify <strong>brand presence</strong> and deliver <strong>measurable performance</strong>.
+                </p>
+                <p class="text-lg md:text-xl text-gray-300 font-medium tracking-wide leading-relaxed">
+                    My expertise lies at the intersection of innovative <strong>brand building</strong> and data-backed <strong>performance marketing</strong>.
+                </p>
+            </div>
+        </section>
+
+        <!-- Case Studies Section -->
+        <section id="case-studies" class="py-28 px-4">
+            <div class="container mx-auto">
+                <h2 class="text-3xl md:text-4xl font-bold text-center mb-2">Key Achievements & Case Studies</h2>
+                <p class="text-gradient text-center font-semibold text-lg mb-12">Proven Results</p>
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-7xl mx-auto">
+                    <!-- Case Study 1 -->
+                    <div class="glass-effect p-8 rounded-2xl">
+                        <h3 class="text-xl font-bold text-white mb-4 border-b-2 border-blue-400 pb-2">Brand Launch/Rebrand</h3>
+                        <ul class="list-disc list-inside space-y-3 text-gray-300 font-medium tracking-wide leading-relaxed">
+                            <li><strong>Challenge:</strong> Low brand awareness, inconsistent messaging.</li>
+                            <li><strong>Strategy:</strong> Developed new brand voice & content series.</li>
+                            <li><strong>Results:</strong> Increased brand mentions by <strong>300%</strong>, Grew social following by <strong>150%</strong>.</li>
+                        </ul>
+                    </div>
+                    <!-- Case Study 2 -->
+                    <div class="glass-effect p-8 rounded-2xl">
+                        <h3 class="text-xl font-bold text-white mb-4 border-b-2 border-blue-400 pb-2">Performance Marketing Campaign</h3>
+                        <ul class="list-disc list-inside space-y-3 text-gray-300 font-medium tracking-wide leading-relaxed">
+                            <li><strong>Challenge:</strong> High CPA, low conversion rates.</li>
+                            <li><strong>Strategy:</strong> Optimized ad spend, redesigned landing pages.</li>
+                            <li><strong>Results:</strong> Reduced CPA by <strong>40%</strong>, Increased conversion rate by <strong>25%</strong>.</li>
+                        </ul>
+                    </div>
+                    <!-- Case Study 3 -->
+                    <div class="glass-effect p-8 rounded-2xl">
+                        <h3 class="text-xl font-bold text-white mb-4 border-b-2 border-blue-400 pb-2">Integrated Campaign</h3>
+                        <ul class="list-disc list-inside space-y-3 text-gray-300 font-medium tracking-wide leading-relaxed">
+                            <li><strong>Challenge:</strong> Build trust while driving sales quickly.</li>
+                            <li><strong>Strategy:</strong> Integrated brand messaging into performance ads.</li>
+                            <li><strong>Results:</strong> Drove <strong>$1.2 million</strong> in revenue, improved brand perception by <strong>15 points</strong>.</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Skills & Tools Section -->
+        <section id="skills" class="py-28 px-4">
+            <div class="container mx-auto">
+                 <h2 class="text-3xl md:text-4xl font-bold text-center mb-2">Skills & Technologies</h2>
+                <p class="text-gradient text-center font-semibold text-lg mb-12">My Toolbox</p>
+                 <div class="glass-effect p-8 rounded-2xl max-w-6xl mx-auto">
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-10">
+                        <div>
+                            <h3 class="text-2xl font-bold text-white mb-6">Skills & Expertise</h3>
+                            <div class="flex flex-wrap gap-3">
+                                <span class="tool-tag">Digital Strategy</span><span class="tool-tag">Market Research</span><span class="tool-tag">Campaign Management</span>
+                                <span class="tool-tag">A/B Testing</span><span class="tool-tag">Data Analysis</span><span class="tool-tag">Content Marketing</span>
+                                <span class="tool-tag">Copywriting</span><span class="tool-tag">SEO</span><span class="tool-tag">SEM</span>
+                                <span class="tool-tag">Social Media Ads</span><span class="tool-tag">Email Marketing</span><span class="tool-tag">CRO</span>
+                                <span class="tool-tag">Lead Generation</span><span class="tool-tag">Budget Management</span><span class="tool-tag">Project Management</span>
+                            </div>
+                        </div>
+                         <div>
+                            <h3 class="text-2xl font-bold text-white mb-6">Tools & Technologies</h3>
+                            <div class="flex flex-wrap gap-3">
+                                <span class="tool-tag">Google Analytics</span><span class="tool-tag">Google Ads</span><span class="tool-tag">SEMrush</span>
+                                <span class="tool-tag">Ahrefs</span><span class="tool-tag">Moz</span><span class="tool-tag">HubSpot</span>
+                                <span class="tool-tag">Salesforce</span><span class="tool-tag">Mailchimp</span><span class="tool-tag">WordPress</span>
+                                <span class="tool-tag">Canva</span><span class="tool-tag">Asana</span><span class="tool-tag">Hotjar</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Contact Section -->
+        <section id="contact" class="py-28 px-4">
+            <div class="container mx-auto max-w-2xl text-center">
+                <h2 class="text-3xl md:text-4xl font-bold text-white mb-2">Let's Connect</h2>
+                <p class="text-gray-300 max-w-xl mx-auto mb-8 font-medium tracking-wide leading-relaxed">
+                    Let's discuss how I can help your brand build a stronger presence and drive exceptional performance.
+                </p>
+                <div class="flex justify-center items-center space-x-6">
+                     <a href="mailto:your-pankajtwork02@gmail.com" class="button-gradient p-4 rounded-full transform hover:scale-110 transition-transform duration-300">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" /></svg>
+                     </a>
+                     <a href="https://www.linkedin.com/in/pankaj-thakur-6b544237a" target="_blank" class="button-gradient p-4 rounded-full transform hover:scale-110 transition-transform duration-300">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="currentColor" viewBox="0 0 24 24"><path d="M4.98 3.5c0 1.381-1.11 2.5-2.48 2.5s-2.48-1.119-2.48-2.5c0-1.38 1.11-2.5 2.48-2.5s2.48 1.12 2.48 2.5zm.02 4.5h-5v16h5v-16zm7.982 0h-4.968v16h4.969v-8.399c0-4.67 6.029-5.052 6.029 0v8.399h4.988v-10.131c0-7.88-8.922-7.593-11.018-3.714v-2.155z"/></svg>
+                     </a>
+                     <a href="https://wa.me/918087116363" target="_blank" class="button-gradient p-4 rounded-full transform hover:scale-110 transition-transform duration-300">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" viewBox="0 0 24 24"><path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.79.46 3.52 1.34 5.07l-1.4 5.02 5.13-1.35c1.49.8 3.16 1.23 4.84 1.23h.01c5.46 0 9.91-4.45 9.91-9.91 0-5.46-4.45-9.9-9.91-9.9zM12.04 3.67c4.52 0 8.23 3.71 8.23 8.23 0 4.52-3.71 8.23-8.23 8.23-1.52 0-2.98-.42-4.29-1.18l-.3-.18-3.18.83.85-3.08-.2-.32c-.85-1.34-1.3-2.86-1.3-4.46 0-4.52 3.71-8.23 8.23-8.23zm4.52 9.5c-.25-.12-1.47-.72-1.7-.8s-.39-.12-.55.12c-.16.25-.64.8-.79.96-.15.16-.3.18-.55.06s-1.04-.38-1.98-1.22c-.73-.66-1.22-1.47-1.36-1.72s-.01-.38.11-.5c.11-.11.25-.28.37-.42.12-.14.16-.25.25-.41.08-.16.04-.3-.02-.42s-.55-1.32-.76-1.81c-.2-.48-.4-.42-.55-.42h-.52c-.16 0-.42.06-.64.3s-.86.84-.86 2.05c0 1.21.88 2.37 1 2.53s1.75 2.67 4.24 3.73c.59.25 1.05.4 1.41.51.59.19 1.13.16 1.56.1.48-.07 1.47-.6 1.68-1.18.2-.58.2-1.08.14-1.18s-.21-.15-.46-.28z"/></svg>
+                     </a>
+                </div>
+            </div>
+        </section>
+
+        <!-- Footer -->
+        <footer class="py-8 px-4 border-t border-gray-800/50">
+            <div class="container mx-auto text-center text-gray-400">
+                <p>&copy; 2024 Pankaj. All Rights Reserved.</p>
+                <p class="text-sm mt-2">Crafting Digital Excellence</p>
+            </div>
+        </footer>
+
+    </div>
+
+    <script>
+        // --- NAVIGATION SCRIPT ---
+        const openNavButton = document.getElementById('open-nav-button');
+        const closeNavButton = document.getElementById('close-nav-button');
+        const sideNav = document.getElementById('side-nav');
+        const navOverlay = document.getElementById('side-nav-overlay');
+        const navLinks = document.querySelectorAll('.nav-link');
+
+        function openNav() {
+            sideNav.classList.remove('-translate-x-full');
+            navOverlay.classList.remove('hidden');
+        }
+
+        function closeNav() {
+            sideNav.classList.add('-translate-x-full');
+            navOverlay.classList.add('hidden');
+        }
+
+        openNavButton.addEventListener('click', openNav);
+        closeNavButton.addEventListener('click', closeNav);
+        navOverlay.addEventListener('click', closeNav);
+        navLinks.forEach(link => {
+            link.addEventListener('click', closeNav);
+        });
+
+
+        // --- FLOATING ICONS SCRIPT ---
+        const container = document.getElementById('floating-container');
+        const bgIcons = [
+            `<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line><line x1="11" y1="8" x2="11" y2="14"></line><line x1="8" y1="11" x2="14" y2="11"></line></svg>`,
+            `<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path><rect x="2" y="9" width="4" height="12"></rect><circle cx="4" cy="4" r="2"></circle></svg>`,
+            `<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20V10"></path><path d="M18 20V4"></path><path d="M6 20V16"></path></svg>`,
+        ];
+        const bgIconCount = 15;
+
+        for (let i = 0; i < bgIconCount; i++) {
+            const iconWrapper = document.createElement('div');
+            iconWrapper.className = 'floating-icon';
+            const size = Math.random() * 40 + 30;
+            iconWrapper.style.width = `${size}px`;
+            iconWrapper.style.height = `${size}px`;
+            iconWrapper.style.left = `${Math.random() * 100}%`;
+            iconWrapper.style.top = `${Math.random() * 100}%`;
+            iconWrapper.style.animationDuration = `${Math.random() * 10 + 8}s`;
+            iconWrapper.style.animationDelay = `${Math.random() * 8}s`;
+            iconWrapper.innerHTML = bgIcons[i % bgIcons.length];
+            container.appendChild(iconWrapper);
+        }
+
+        // --- ASSEMBLING CUBE SCRIPT ---
+        const cubeContainer = document.getElementById('cube-container');
+        let scene, camera, renderer, mainCube, clock;
+        const pieces = [];
+        const animationDuration = 3; // seconds
+        let animationProgress = 0;
+        let animationStarted = false;
+
+        const services = [
+            { title: 'SEO', metric: '+40% Traffic', color: '#60A5FA', icon: `<svg xmlns="http://www.w3.org/2000/svg" width="96" height="96" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>` },
+            { title: 'Content', metric: '+50% Engagement', color: '#34D399', icon: `<svg xmlns="http://www.w3.org/2000/svg" width="96" height="96" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline></svg>` },
+            { title: 'Leads', metric: '2x Conversion', color: '#A78BFA', icon: `<svg xmlns="http://www.w3.org/2000/svg" width="96" height="96" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path><circle cx="9" cy="7" r="4"></circle><line x1="23" y1="11" x2="17" y2="11"></line><line x1="20" y1="8" x2="20" y2="14"></line></svg>` },
+            { title: 'Marketing', metric: '3x ROAS', color: '#F87171', icon: `<svg xmlns="http://www.w3.org/2000/svg" width="96" height="96" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><polygon points="7.86 2 16.14 2 22 7.86 22 16.14 16.14 22 7.86 22 2 16.14 2 7.86 7.86 2"></polygon><line x1="12" y1="8" x2="12" y2="12"></line><line x1="12" y1="16" x2="12.01" y2="16"></line></svg>` },
+            { title: 'Strategy', metric: '+30% Awareness', color: '#FBBF24', icon: `<svg xmlns="http://www.w3.org/2000/svg" width="96" height="96" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2L2 7l10 5 10-5-10-5z"></path><path d="M2 17l10 5 10-5"></path><path d="M2 12l10 5 10-5"></path></svg>` },
+            { title: 'Growth', metric: '+60% Reach', color: '#F472B6', icon: `<svg xmlns="http://www.w3.org/2000/svg" width="96" height="96" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="20" x2="12" y2="4"></line><polyline points="6 10 12 4 18 10"></polyline></svg>` }
+        ];
+
+        function createFaceMaterial(text, metric, color, iconSVG) {
+            const canvas = document.createElement('canvas');
+            canvas.width = 512; // Higher resolution
+            canvas.height = 512;
+            const context = canvas.getContext('2d');
+
+            context.fillStyle = 'rgba(30, 41, 59, 0.7)';
+            context.fillRect(0, 0, 512, 512);
+            
+            context.shadowColor = color;
+            context.shadowBlur = 40;
+            
+            const img = new Image();
+            img.onload = function() {
+                context.drawImage(img, 192, 80, 128, 128); // Position icon
+                const texture = new THREE.CanvasTexture(canvas);
+                texture.needsUpdate = true;
+            };
+            img.src = "data:image/svg+xml;charset=utf-8," + encodeURIComponent(iconSVG);
+
+            context.shadowColor = color;
+            context.shadowBlur = 30;
+            context.font = 'bold 72px Inter';
+            context.fillStyle = 'white';
+            context.textAlign = 'center';
+            context.textBaseline = 'middle';
+            context.fillText(text, 256, 280);
+            
+            context.shadowBlur = 15;
+            context.font = '42px Inter';
+            context.fillStyle = '#e5e7eb';
+            context.fillText(metric, 256, 360);
+
+            return new THREE.MeshStandardMaterial({ map: new THREE.CanvasTexture(canvas), transparent: true, opacity: 0.95 });
+        }
+
+        function initShatteredCube() {
+            scene = new THREE.Scene();
+            clock = new THREE.Clock();
+
+            camera = new THREE.PerspectiveCamera(75, cubeContainer.clientWidth / cubeContainer.clientHeight, 0.1, 1000);
+            camera.position.z = 8;
+
+            renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
+            renderer.setSize(cubeContainer.clientWidth, cubeContainer.clientHeight);
+            cubeContainer.appendChild(renderer.domElement);
+            
+            mainCube = new THREE.Group();
+            scene.add(mainCube);
+
+            const faceMaterials = services.map(s => createFaceMaterial(s.title, s.metric, s.color, s.icon));
+            const cubeGeometry = new THREE.BoxGeometry(4.5, 4.5, 4.5); // Increased size
+            const finalCube = new THREE.Mesh(cubeGeometry, faceMaterials);
+            finalCube.visible = false;
+            mainCube.add(finalCube);
+            
+            const pieceSize = 1;
+            const pieceGeometry = new THREE.BoxGeometry(pieceSize, pieceSize, pieceSize);
+            
+            for (let i = 0; i < 50; i++) {
+                const piece = new THREE.Mesh(pieceGeometry, new THREE.MeshStandardMaterial({color: services[i % 6].color, transparent: true, opacity: 1}));
+                
+                piece.finalPosition = new THREE.Vector3((Math.random() - 0.5) * 4.0, (Math.random() - 0.5) * 4.0, (Math.random() - 0.5) * 4.0);
+                piece.position.set((Math.random() - 0.5) * 20, (Math.random() - 0.5) * 20, (Math.random() - 0.5) * 20);
+                
+                piece.initialRotation = new THREE.Euler(Math.random() * Math.PI * 2, Math.random() * Math.PI * 2, Math.random() * Math.PI * 2);
+                piece.finalRotation = new THREE.Euler(0, 0, 0);
+                piece.rotation.copy(piece.initialRotation);
+
+                pieces.push(piece);
+                scene.add(piece);
+            }
+            
+            const ambientLight = new THREE.AmbientLight(0xffffff, 0.8);
+            scene.add(ambientLight);
+            const directionalLight = new THREE.DirectionalLight(0xffffff, 1);
+            directionalLight.position.set(5, 5, 5);
+            scene.add(directionalLight);
+
+            animateShatteredCube();
+            
+            let isDragging = false;
+            let previousMousePosition = { x: 0, y: 0 };
+            
+            cubeContainer.addEventListener('mousedown', (e) => { isDragging = true; });
+            document.addEventListener('mouseup', () => { isDragging = false; });
+            cubeContainer.addEventListener('mousemove', (e) => {
+                if (isDragging && animationProgress >= 1) {
+                    const deltaMove = { x: e.offsetX - previousMousePosition.x, y: e.offsetY - previousMousePosition.y };
+                    mainCube.rotation.y += deltaMove.x * 0.01;
+                    mainCube.rotation.x += deltaMove.y * 0.01;
+                }
+                previousMousePosition = { x: e.offsetX, y: e.offsetY };
+            });
+
+            window.addEventListener('resize', onWindowResize);
+        }
+
+        function easeInOutCubic(t) {
+            return t < 0.5 ? 4 * t * t * t : 1 - Math.pow(-2 * t + 2, 3) / 2;
+        }
+
+        function animateShatteredCube() {
+            requestAnimationFrame(animateShatteredCube);
+            const delta = clock.getDelta();
+
+            if (animationStarted) {
+                if (animationProgress < 1) {
+                    animationProgress += delta / animationDuration;
+                    animationProgress = Math.min(animationProgress, 1);
+                    
+                    const easedProgress = easeInOutCubic(animationProgress);
+                    
+                    const crossfadePoint = 0.7; // Start fading in the final cube at 70% of the animation
+
+                    if (easedProgress > crossfadePoint) {
+                        mainCube.children[0].visible = true;
+                        const finalCubeOpacity = (easedProgress - crossfadePoint) / (1 - crossfadePoint);
+                        mainCube.children[0].material.forEach(m => m.opacity = finalCubeOpacity);
+                    }
+
+                    pieces.forEach(piece => {
+                        piece.position.lerpVectors(piece.initialPosition, piece.finalPosition, easedProgress);
+                        const qInitial = new THREE.Quaternion().setFromEuler(piece.initialRotation);
+                        const qFinal = new THREE.Quaternion().setFromEuler(piece.finalRotation);
+                        piece.quaternion.slerpQuaternions(qInitial, qFinal, easedProgress);
+                        piece.material.opacity = 1 - easedProgress; // Fade out the pieces
+                    });
+                    
+                    if(animationProgress >= 1) {
+                        pieces.forEach(p => p.visible = false);
+                        mainCube.children[0].material.forEach(m => m.opacity = 1);
+                    }
+                }
+            } else {
+                 pieces.forEach(p => {
+                    p.rotation.x += 0.005;
+                    p.rotation.y += 0.005;
+                 });
+            }
+
+            renderer.render(scene, camera);
+        }
+
+        function onWindowResize() {
+            camera.aspect = cubeContainer.clientWidth / cubeContainer.clientHeight;
+            camera.updateProjectionMatrix();
+            renderer.setSize(cubeContainer.clientWidth, cubeContainer.clientHeight);
+        }
+        
+        function resetCubeAnimation() {
+            animationStarted = false;
+            animationProgress = 0;
+            mainCube.children[0].visible = false;
+            mainCube.children[0].material.forEach(m => m.opacity = 0);
+            pieces.forEach(p => {
+                p.position.set(
+                    (Math.random() - 0.5) * 20,
+                    (Math.random() - 0.5) * 20,
+                    (Math.random() - 0.5) * 20
+                );
+                p.rotation.copy(p.initialRotation);
+                p.material.opacity = 1;
+                p.visible = true;
+            });
+        }
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    if (!animationStarted) {
+                        animationStarted = true;
+                        clock.start();
+                        pieces.forEach(p => {
+                            p.initialPosition = p.position.clone();
+                        });
+                    }
+                } else {
+                    if (animationStarted) {
+                       resetCubeAnimation();
+                    }
+                }
+            });
+        }, { threshold: 0.5 });
+
+        observer.observe(document.getElementById('services'));
+        
+        initShatteredCube();
+    </script>
+</body>
+</html>
