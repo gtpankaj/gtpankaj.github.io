@@ -167,11 +167,7 @@
                     <!-- Case Study 1 -->
                     <div class="glass-effect p-8 rounded-2xl">
                         <h3 class="text-xl font-bold text-white mb-4 border-b-2 border-blue-400 pb-2">Brand Launch/Rebrand</h3>
-                        <ul class="list-disc list-inside space-y-3 text-gray-300 font-medium tracking-wide leading-relaxed">
-                            <li><strong>Challenge:</strong> Low brand awareness, inconsistent messaging.</li>
-                            <li><strong>Strategy:</strong> Developed new brand voice & content series.</li>
-                            <li><strong>Results:</strong> Increased brand mentions by <strong>300%</strong>, Grew social following by <strong>150%</strong>.</li>
-                        </ul>
+                        <ul class="list-disc list-inside space-y-3 text-gray-300 font-medium tracking-wide leading-relaxed"><br>                            <li><strong>Challenge:</strong> Low brand awareness, inconsistent messaging.</li><br>                            <li><strong>Strategy:</strong> Developed new brand voice & content series.</li><br>                            <li><strong>Results:</strong> Increased brand mentions by <strong>300%</strong>, Grew social following by <strong>150%</strong>.</li><br>                        </ul>
                     </div>
                     <!-- Case Study 2 -->
                     <div class="glass-effect p-8 rounded-2xl">
@@ -206,19 +202,19 @@
                             <h3 class="text-2xl font-bold text-white mb-6">Skills & Expertise</h3>
                             <div class="flex flex-wrap gap-3">
                                 <span class="tool-tag">Digital Strategy</span><span class="tool-tag">Market Research</span><span class="tool-tag">Campaign Management</span>
-                                <span class="tool-tag">A/B Testing</span><span class="tool-tag">Data Analysis</span><span class="tool-tag">Content Marketing</span>
-                                <span class="tool-tag">Copywriting</span><span class="tool-tag">SEO</span><span class="tool-tag">SEM</span>
-                                <span class="tool-tag">Social Media Ads</span><span class="tool-tag">Email Marketing</span><span class="tool-tag">CRO</span>
+                                <span class="tool-tag">Data Analysis</span><span class="tool-tag">Content Marketing</span>
+                                <span class="tool-tag">Copywriting</span><span class="tool-tag">SEM</span>
+                                <span class="tool-tag">Social Media Ads</span><span class="tool-tag">Email Marketing</span>
                                 <span class="tool-tag">Lead Generation</span><span class="tool-tag">Budget Management</span><span class="tool-tag">Project Management</span>
                             </div>
                         </div>
                          <div>
                             <h3 class="text-2xl font-bold text-white mb-6">Tools & Technologies</h3>
                             <div class="flex flex-wrap gap-3">
-                                <span class="tool-tag">Google Analytics</span><span class="tool-tag">Google Ads</span><span class="tool-tag">SEMrush</span>
-                                <span class="tool-tag">Ahrefs</span><span class="tool-tag">Moz</span><span class="tool-tag">HubSpot</span>
-                                <span class="tool-tag">Salesforce</span><span class="tool-tag">Mailchimp</span><span class="tool-tag">WordPress</span>
-                                <span class="tool-tag">Canva</span><span class="tool-tag">Asana</span><span class="tool-tag">Hotjar</span>
+                                <span class="tool-tag">Google Analytics</span><span class="tool-tag">Google Ads</span>
+                                <span class="tool-tag">HubSpot</span>
+                                <span class="tool-tag">Salesforce</span><span class="tool-tag">Mailchimp</span>
+                                <span class="tool-tag">Canva</span><span class="tool-tag">Hotjar</span>
                             </div>
                         </div>
                     </div>
@@ -234,8 +230,8 @@
                     Let's discuss how I can help your brand build a stronger presence and drive exceptional performance.
                 </p>
                 <div class="flex justify-center items-center space-x-6">
-                     <a href="mailto:your-pankajtwork02@gmail.com" class="button-gradient p-4 rounded-full transform hover:scale-110 transition-transform duration-300">
-                        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" /></svg>
+                     <a href="mailto:pankaj.example@gmail.com?subject=Inquiry from your Portfolio&body=Hello Pankaj,%0D%0AI'm reaching out after viewing your digital marketing portfolio. I'm interested in discussing..." class="button-gradient p-4 rounded-full transform hover:scale-110 transition-transform duration-300">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" /></svg>
                      </a>
                      <a href="https://www.linkedin.com/in/pankaj-thakur-6b544237a" target="_blank" class="button-gradient p-4 rounded-full transform hover:scale-110 transition-transform duration-300">
                         <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="currentColor" viewBox="0 0 24 24"><path d="M4.98 3.5c0 1.381-1.11 2.5-2.48 2.5s-2.48-1.119-2.48-2.5c0-1.38 1.11-2.5 2.48-2.5s2.48 1.12 2.48 2.5zm.02 4.5h-5v16h5v-16zm7.982 0h-4.968v16h4.969v-8.399c0-4.67 6.029-5.052 6.029 0v8.399h4.988v-10.131c0-7.88-8.922-7.593-11.018-3.714v-2.155z"/></svg>
@@ -497,24 +493,33 @@
                     }
 
                     pieces.forEach(piece => {
-                        piece.position.lerpVectors(piece.initialPosition, piece.finalPosition, easedProgress);
-                        const qInitial = new THREE.Quaternion().setFromEuler(piece.initialRotation);
-                        const qFinal = new THREE.Quaternion().setFromEuler(piece.finalRotation);
-                        piece.quaternion.slerpQuaternions(qInitial, qFinal, easedProgress);
-                        piece.material.opacity = 1 - easedProgress; // Fade out the pieces
+                        piece.position.lerpVectors(piece.position, piece.finalPosition, easedProgress);
+                        piece.rotation.x = piece.initialRotation.x * (1 - easedProgress) + piece.finalRotation.x * easedProgress;
+                        piece.rotation.y = piece.initialRotation.y * (1 - easedProgress) + piece.finalRotation.y * easedProgress;
+                        piece.rotation.z = piece.initialRotation.z * (1 - easedProgress) + piece.finalRotation.z * easedProgress;
+                        piece.material.opacity = 1 - easedProgress; // Fade out pieces
                     });
-                    
-                    if(animationProgress >= 1) {
-                        pieces.forEach(p => p.visible = false);
-                        mainCube.children[0].material.forEach(m => m.opacity = 1);
-                    }
+                } else {
+                    // Animation complete, ensure main cube is fully visible and pieces are gone
+                    mainCube.children[0].visible = true;
+                    mainCube.children[0].material.forEach(m => m.opacity = 1);
+                    pieces.forEach(piece => {
+                        scene.remove(piece); // Remove individual pieces from scene
+                    });
+                    pieces.length = 0; // Clear the array
                 }
-            } else {
-                 pieces.forEach(p => {
-                    p.rotation.x += 0.005;
-                    p.rotation.y += 0.005;
-                 });
             }
+
+            // Continuous rotation of the main cube after animation
+            if (animationProgress >= 1) {
+                mainCube.rotation.y += 0.005;
+                mainCube.rotation.x += 0.002;
+            } else {
+                 // Slight rotation during the assembly animation for dynamism
+                mainCube.rotation.y += 0.002;
+                mainCube.rotation.x += 0.001;
+            }
+
 
             renderer.render(scene, camera);
         }
@@ -524,45 +529,36 @@
             camera.updateProjectionMatrix();
             renderer.setSize(cubeContainer.clientWidth, cubeContainer.clientHeight);
         }
-        
-        function resetCubeAnimation() {
-            animationStarted = false;
-            animationProgress = 0;
-            mainCube.children[0].visible = false;
-            mainCube.children[0].material.forEach(m => m.opacity = 0);
-            pieces.forEach(p => {
-                p.position.set(
-                    (Math.random() - 0.5) * 20,
-                    (Math.random() - 0.5) * 20,
-                    (Math.random() - 0.5) * 20
-                );
-                p.rotation.copy(p.initialRotation);
-                p.material.opacity = 1;
-                p.visible = true;
-            });
-        }
 
+        // --- Intersection Observer for Services Section ---
+        const servicesSection = document.getElementById('services');
         const observer = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    if (!animationStarted) {
-                        animationStarted = true;
-                        clock.start();
-                        pieces.forEach(p => {
-                            p.initialPosition = p.position.clone();
-                        });
-                    }
-                } else {
-                    if (animationStarted) {
-                       resetCubeAnimation();
-                    }
+                if (entry.isIntersecting && !animationStarted) {
+                    animationStarted = true;
+                    // Start the cube animation only when the section is in view
+                    initShatteredCube();
+                    observer.unobserve(entry.target); // Stop observing once animation starts
                 }
             });
-        }, { threshold: 0.5 });
+        }, { threshold: 0.5 }); // Trigger when 50% of the section is visible
 
-        observer.observe(document.getElementById('services'));
-        
-        initShatteredCube();
+        // Start observing the services section
+        observer.observe(servicesSection);
+
+        // Initial setup for the hero headline animation
+        document.addEventListener('DOMContentLoaded', () => {
+            const heroHeadline = document.getElementById('hero-headline');
+            if (heroHeadline) {
+                heroHeadline.style.opacity = 0;
+                heroHeadline.style.transform = 'translateY(20px)';
+                setTimeout(() => {
+                    heroHeadline.style.transition = 'opacity 1s ease-out, transform 1s ease-out';
+                    heroHeadline.style.opacity = 1;
+                    heroHeadline.style.transform = 'translateY(0)';
+                }, 200);
+            }
+        });
     </script>
 </body>
 </html>
