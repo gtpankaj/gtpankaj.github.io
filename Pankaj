@@ -90,7 +90,7 @@
         #cube-container {
             width: 100%;
             height: 450px;
-            cursor: grab;
+            cursor: grab; /* Initial cursor style for dragging */
         }
 
     </style>
@@ -102,7 +102,8 @@
 
     <!-- Collapsible Side Nav -->
     <div id="side-nav-overlay" class="fixed inset-0 bg-black/50 z-40 hidden"></div>
-    <nav id="side-nav" class="glass-effect fixed top-0 left-0 h-full w-72 p-8 z-50 transform -translate-x-full transition-transform duration-300 ease-in-out">
+    <!-- Updated: changed left-0 to right-0 and transform classes -->
+    <nav id="side-nav" class="glass-effect fixed top-0 right-0 h-full w-72 p-8 z-50 transform translate-x-full transition-transform duration-300 ease-in-out">
         <div class="flex justify-between items-center mb-12">
             <a href="#" class="text-3xl font-bold text-white">Pankaj.</a>
             <button id="close-nav-button" class="text-white">
@@ -119,7 +120,8 @@
     </nav>
     
     <!-- Menu Button -->
-    <button id="open-nav-button" class="glass-effect fixed top-6 left-6 h-14 w-14 flex items-center justify-center rounded-full z-30">
+    <!-- Updated: changed left-6 to right-6 -->
+    <button id="open-nav-button" class="glass-effect fixed top-6 right-6 h-14 w-14 flex items-center justify-center rounded-full z-30">
         <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7" /></svg>
     </button>
 
@@ -148,7 +150,7 @@
                  <h2 class="text-3xl md:text-4xl font-bold text-center mb-2">About Me</h2>
                  <p class="text-gradient text-center font-semibold text-lg mb-8">Architecting Digital Growth</p>
                  <p class="text-lg md:text-xl text-gray-300 font-medium tracking-wide leading-relaxed mb-4">
-                    I craft digital strategies that amplify <strong>brand presence</strong> and deliver <strong>measurable performance</strong>.
+                    I shape digital strategies that enhance <strong>brand impact</strong> and deliver <strong>measurable growth</strong>.
                 </p>
                 <p class="text-lg md:text-xl text-gray-300 font-medium tracking-wide leading-relaxed">
                     My expertise lies at the intersection of innovative <strong>brand building</strong> and data-backed <strong>performance marketing</strong>.
@@ -233,7 +235,7 @@
                 </p>
                 <div class="flex justify-center items-center space-x-6">
                      <a href="mailto:your-pankajtwork02@gmail.com" class="button-gradient p-4 rounded-full transform hover:scale-110 transition-transform duration-300">
-                        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" /></svg>
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" /></svg>
                      </a>
                      <a href="https://www.linkedin.com/in/pankaj-thakur-6b544237a" target="_blank" class="button-gradient p-4 rounded-full transform hover:scale-110 transition-transform duration-300">
                         <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="currentColor" viewBox="0 0 24 24"><path d="M4.98 3.5c0 1.381-1.11 2.5-2.48 2.5s-2.48-1.119-2.48-2.5c0-1.38 1.11-2.5 2.48-2.5s2.48 1.12 2.48 2.5zm.02 4.5h-5v16h5v-16zm7.982 0h-4.968v16h4.969v-8.399c0-4.67 6.029-5.052 6.029 0v8.399h4.988v-10.131c0-7.88-8.922-7.593-11.018-3.714v-2.155z"/></svg>
@@ -248,7 +250,7 @@
         <!-- Footer -->
         <footer class="py-8 px-4 border-t border-gray-800/50">
             <div class="container mx-auto text-center text-gray-400">
-                <p>&copy; 2024 Pankaj. All Rights Reserved.</p>
+                <p>&copy; 2025 Pankaj. All Rights Reserved.</p>
                 <p class="text-sm mt-2">Crafting Digital Excellence</p>
             </div>
         </footer>
@@ -264,12 +266,14 @@
         const navLinks = document.querySelectorAll('.nav-link');
 
         function openNav() {
-            sideNav.classList.remove('-translate-x-full');
+            // Updated: Removed 'translate-x-full' from the right-aligned nav
+            sideNav.classList.remove('translate-x-full');
             navOverlay.classList.remove('hidden');
         }
 
         function closeNav() {
-            sideNav.classList.add('-translate-x-full');
+            // Updated: Added 'translate-x-full' for the right-aligned nav
+            sideNav.classList.add('translate-x-full');
             navOverlay.classList.add('hidden');
         }
 
@@ -286,7 +290,7 @@
         const bgIcons = [
             `<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line><line x1="11" y1="8" x2="11" y2="14"></line><line x1="8" y1="11" x2="14" y2="11"></line></svg>`,
             `<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path><rect x="2" y="9" width="4" height="12"></rect><circle cx="4" cy="4" r="2"></circle></svg>`,
-            `<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20V10"></path><path d="M18 20V4"></path><path d="M6 20V16"></path></svg>`,
+            `<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1" stroke-linejoin="round"><path d="M12 20V10"></path><path d="M18 20V4"></path><path d="M6 20V16"></path></svg>`,
         ];
         const bgIconCount = 15;
 
@@ -316,7 +320,8 @@
             { title: 'SEO', metric: '+40% Traffic', color: '#60A5FA', icon: `<svg xmlns="http://www.w3.org/2000/svg" width="96" height="96" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>` },
             { title: 'Content', metric: '+50% Engagement', color: '#34D399', icon: `<svg xmlns="http://www.w3.org/2000/svg" width="96" height="96" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline></svg>` },
             { title: 'Leads', metric: '2x Conversion', color: '#A78BFA', icon: `<svg xmlns="http://www.w3.org/2000/svg" width="96" height="96" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path><circle cx="9" cy="7" r="4"></circle><line x1="23" y1="11" x2="17" y2="11"></line><line x1="20" y1="8" x2="20" y2="14"></line></svg>` },
-            { title: 'Marketing', metric: '3x ROAS', color: '#F87171', icon: `<svg xmlns="http://www.w3.org/2000/svg" width="96" height="96" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><polygon points="7.86 2 16.14 2 22 7.86 22 16.14 16.14 22 7.86 22 2 16.14 2 7.86 7.86 2"></polygon><line x1="12" y1="8" x2="12" y2="12"></line><line x1="12" y1="16" x2="12.01" y2="16"></line></svg>` },
+            // Updated Marketing icon to a target
+            { title: 'Marketing', metric: '3x ROAS', color: '#F87171', icon: `<svg xmlns="http://www.w3.org/2000/svg" width="96" height="96" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><circle cx="12" cy="12" r="6"></circle><circle cx="12" cy="12" r="2"></circle><line x1="22" y1="12" x2="18" y2="12"></line><line x1="2" y1="12" x2="6" y2="12"></line><line x1="12" y1="2" x2="12" y2="6"></line><line x1="12" y1="22" x2="12" y2="18"></line></svg>` },
             { title: 'Strategy', metric: '+30% Awareness', color: '#FBBF24', icon: `<svg xmlns="http://www.w3.org/2000/svg" width="96" height="96" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2L2 7l10 5 10-5-10-5z"></path><path d="M2 17l10 5 10-5"></path><path d="M2 12l10 5 10-5"></path></svg>` },
             { title: 'Growth', metric: '+60% Reach', color: '#F472B6', icon: `<svg xmlns="http://www.w3.org/2000/svg" width="96" height="96" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="20" x2="12" y2="4"></line><polyline points="6 10 12 4 18 10"></polyline></svg>` }
         ];
@@ -403,18 +408,67 @@
             animateShatteredCube();
             
             let isDragging = false;
-            let previousMousePosition = { x: 0, y: 0 };
-            
-            cubeContainer.addEventListener('mousedown', (e) => { isDragging = true; });
-            document.addEventListener('mouseup', () => { isDragging = false; });
+            let previousMousePosition = { x: 0, y: 0 }; // For mouse
+            let previousTouchPosition = { x: 0, y: 0 }; // For touch
+
+            // Mouse events for click-and-drag rotation
+            cubeContainer.addEventListener('mousedown', (e) => {
+                isDragging = true;
+                previousMousePosition = { x: e.offsetX, y: e.offsetY };
+                cubeContainer.style.cursor = 'grabbing'; // Change cursor style to grabbing
+            });
+            document.addEventListener('mouseup', () => {
+                isDragging = false;
+                cubeContainer.style.cursor = 'grab'; // Reset cursor style to grab
+            });
             cubeContainer.addEventListener('mousemove', (e) => {
-                if (isDragging && animationProgress >= 1) {
+                // Only allow rotation after animation is complete (animationProgress >= 1)
+                if (isDragging && animationProgress >= 1) { 
                     const deltaMove = { x: e.offsetX - previousMousePosition.x, y: e.offsetY - previousMousePosition.y };
                     mainCube.rotation.y += deltaMove.x * 0.01;
                     mainCube.rotation.x += deltaMove.y * 0.01;
+                    previousMousePosition = { x: e.offsetX, y: e.offsetY };
                 }
-                previousMousePosition = { x: e.offsetX, y: e.offsetY };
             });
+
+            // Touch events for swipe rotation
+            cubeContainer.addEventListener('touchstart', (e) => {
+                isDragging = true;
+                const touch = e.touches[0];
+                previousTouchPosition = { x: touch.clientX, y: touch.clientY };
+                e.preventDefault(); // Prevent scrolling while dragging on touch
+            }, { passive: false });
+
+            cubeContainer.addEventListener('touchend', () => {
+                isDragging = false;
+            });
+
+            cubeContainer.addEventListener('touchmove', (e) => {
+                // Only allow rotation after animation is complete (animationProgress >= 1)
+                if (isDragging && animationProgress >= 1) { 
+                    const touch = e.touches[0];
+                    const deltaMove = { x: touch.clientX - previousTouchPosition.x, y: touch.clientY - previousTouchPosition.y };
+                    mainCube.rotation.y += deltaMove.x * 0.01;
+                    mainCube.rotation.x += deltaMove.y * 0.01;
+                    previousTouchPosition = { x: touch.clientX, y: touch.clientY };
+                    e.preventDefault(); // Prevent scrolling while dragging on touch
+                }
+            }, { passive: false });
+
+            // --- New: Wheel event listener for scroll-based rotation ---
+            cubeContainer.addEventListener('wheel', (e) => {
+                // Only allow scroll rotation after the cube has assembled
+                if (animationProgress >= 1) {
+                    // Prevent default page scrolling when over the cube to enable cube rotation
+                    e.preventDefault();
+
+                    // Adjust rotation based on scroll direction
+                    // e.deltaY for vertical scroll (maps to X-axis rotation)
+                    mainCube.rotation.x += e.deltaY * 0.005; 
+                    // e.deltaX for horizontal scroll (maps to Y-axis rotation)
+                    mainCube.rotation.y += e.deltaX * 0.005; 
+                }
+            }, { passive: false }); // Use passive: false to allow preventDefault
 
             window.addEventListener('resize', onWindowResize);
         }
